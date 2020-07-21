@@ -11,7 +11,10 @@ VoxelNet Implementation codes from "https://github.com/qianguih/voxelnet"
 * easydict
 * ROS(melodic)
 * jsk package(ros-jsk-recognition)
-* cv_brdge
+* cv_brdge(ros)
+* nodelet(ros)
+* pcl_ros(ros)
+* rviz(ros)
   
 ### Data Preparation
 Download the test data: https://pan.baidu.com/s/1kxZxrjGHDmTt-9QRMd_kOA
@@ -35,7 +38,10 @@ before run the code, you may need to install:
 - `you probably also need to complie the box_overlap.so using numba
 - `python3 voxelnet_ros.py & python3 pub_kitti_point_cloud.py`& python3 pub_rgb_image.py & python3 pub_road_result.py 
   - unfortunately, `rosrun` won't work. because it's using Python 3.x instead of 2.x
-  
+- `roslaunch voxelnet_ros convex_hull.launch
+- `rosrun rviz rviz 
+  - use the voxelnet.rviz to config rviz
+
 ### ROS Node 
 
 <img src="./pictures/8.png" />
