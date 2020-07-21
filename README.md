@@ -23,9 +23,9 @@ unzip to `data` folder,Directory structure should be:
 
 ```
 data
-----npy_lidar_0048
-----result_road_0048
-----rgb_image_0048
+----npy_lidar_0048(lidar point cloud)
+----result_road_0048(road detection result)
+----rgb_image_0048(correponding rgb left camera image)
 ```
 ### Instructions
 before run the code, you may need to install:
