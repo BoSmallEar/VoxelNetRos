@@ -17,7 +17,7 @@ VoxelNet Implementation codes from "https://github.com/qianguih/voxelnet"
 * rviz(ros)
   
 ### Data Preparation
-Download the test data: https://pan.baidu.com/s/1kxZxrjGHDmTt-9QRMd_kOA
+Download the test data from the raw KITII dataset
 
 unzip to `data` folder,Directory structure should be:
 
