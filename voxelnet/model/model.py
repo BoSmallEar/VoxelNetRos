@@ -3,7 +3,7 @@
 import sys
 import os
 import tensorflow as tf
-sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+sys.path.remove('/opt/ros/melodic/lib/python2.7/dist-packages')
 import cv2
 from numba import jit
 

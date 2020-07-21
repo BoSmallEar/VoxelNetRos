@@ -102,13 +102,13 @@ class Processor_ROS:
     def run(self):
         raw_lidar = self.np_p_ranged
         # print(raw_lidar.shape) #  DEBUG
-        voxel = process_pointcloud(raw_lidar)
-        return raw_lidar, voxel
+        voxel, point_cloud = process_pointcloud(raw_lidar)
+        return raw_lidar, voxel, point_cloud
 
 
 def dataset_generator(np_p_ranged, batch_size=1, multi_gpu_sum=1):
     proc = Processor_ROS(np_p_ranged)
-    raw_lidar, voxel = proc.run()
+    raw_lidar, voxel, point_cloud = proc.run()
 
     # print("feature_buffer: {}".format(voxel['feature_buffer'].shape)) #  DEBUG [----, 35, 7]
     # print("coordinate_buffer: {}".format(voxel['coordinate_buffer'].shape)) #  DEBUG [----, 3]
@@ -131,7 +131,7 @@ def dataset_generator(np_p_ranged, batch_size=1, multi_gpu_sum=1):
         np.array(raw_lidar)
     )
 
-    return ret
+    return ret,point_cloud
 
 
 #  point cloud topic's subscriber callback function
@@ -149,11 +149,11 @@ def velo_callback(msg):
     # np_p = np.delete(np_p, -1, 1)  # delete "ring" field
     print(np_p.shape)
     
-    dataset = dataset_generator(np_p, batch_size=1, multi_gpu_sum=1)
+    dataset,point_cloud = dataset_generator(np_p, batch_size=1, multi_gpu_sum=1)
     # print("{} {} {} {}".format(dataset[0],dataset[1],dataset[2],dataset[3])) #  DEBUG
     results = model.predict_step_ros(sess, dataset)
     #  publish to /velodyne_poitns_modified
-    publish_test(np_p, msg.header.frame_id)
+    publish_test(point_cloud, msg.header.frame_id)
     # results: (N, N') (class, x, y, z, h, w, l, rz, score)
     if len(results[0]) != 0:
         # print("len(results[0]) : {} ".format(len(results[0])))

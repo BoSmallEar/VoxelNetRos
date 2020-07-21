@@ -84,5 +84,5 @@ def process_pointcloud(point_cloud, cls=cfg.DETECT_OBJ):
     voxel_dict = {'feature_buffer': feature_buffer,
                   'coordinate_buffer': coordinate_buffer,
                   'number_buffer': number_buffer}
-    return voxel_dict
+    return voxel_dict, point_cloud
 

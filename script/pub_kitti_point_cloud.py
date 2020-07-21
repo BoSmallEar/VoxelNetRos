@@ -73,7 +73,8 @@ def publish_pc(np_array, frame_id):
 
 
 if __name__ == '__main__':
-    test_root = '../data/lidar_2d'
+    test_root = '../data/bin_lidar_0048'
+    road_result_root = '../data/result_road_0048'
     # test_root = '/home/adam/data/voxel_net/KITTI/testing/velodyne'
     file_list = []
     tmp_list = os.listdir(test_root)
@@ -83,9 +84,10 @@ if __name__ == '__main__':
         file_list.append(cur_file)
 
 
+
     rospy.init_node('pub_kitti_point_cloud')
     pub_velo = rospy.Publisher("velodyne_points", PointCloud2, queue_size=1)
-    rate = rospy.Rate(2)
+    rate = rospy.Rate(0.2)
 
     pc_num_counter = 0
     while not rospy.is_shutdown():
@@ -93,8 +95,11 @@ if __name__ == '__main__':
 
         # pc_data = np.fromfile(file_list[pc_num_counter], dtype=np.float32).reshape(-1, 4)
 
-        pc_data = np.load(file_list[pc_num_counter])
-        pc_data = pc_data[:, :, :4]
+        # pc_data = np.load(file_list[pc_num_counter])
+        # print(pc_data.shape)
+        # print(pc_data[0,0,:])
+        # pc_data = pc_data[:, :, :4]
+        pc_data = np.fromfile(file_list[pc_num_counter], dtype=np.float32).reshape(-1, 4)
         pc_data = pc_data.reshape(-1, 4)
 
         publish_pc(pc_data, 'velodyne')
