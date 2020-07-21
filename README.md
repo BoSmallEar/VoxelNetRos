@@ -9,8 +9,9 @@ VoxelNet Implementation codes from "https://github.com/qianguih/voxelnet"
 * shapely
 * numba
 * easydict
-* ROS
-* jsk package
+* ROS(melodic)
+* jsk package(ros-jsk-recognition)
+* cv_brdge
   
 ### Data Preparation
 Download the test data: https://pan.baidu.com/s/1kxZxrjGHDmTt-9QRMd_kOA
@@ -19,10 +20,9 @@ unzip to `data` folder,Directory structure should be:
 
 ```
 data
-----lidar_2d
---------0000...1.npy
---------0000...2.npy
---------.......
+----npy_lidar_0048
+----result_road_0048
+----rgb_image_0048
 ```
 ### Instructions
 before run the code, you may need to install:
@@ -32,6 +32,7 @@ before run the code, you may need to install:
 - move voxelnet_ros folder to your `catkin_ws`
 - `catkin_make`
 - `roscd voxelnet/script/`
+- `you probably also need to complie the box_overlap.so using numba
 - `python3 voxelnet_ros.py & python3 pub_kitti_point_cloud.py`& python3 pub_rgb_image.py & python3 pub_road_result.py 
   - unfortunately, `rosrun` won't work. because it's using Python 3.x instead of 2.x
   
