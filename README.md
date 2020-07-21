@@ -32,7 +32,7 @@ before run the code, you may need to install:
 - move voxelnet_ros folder to your `catkin_ws`
 - `catkin_make`
 - `roscd voxelnet/script/`
-- `python3 voxelnet_ros.py & python3 pub_kitti_point_cloud.py` 
+- `python3 voxelnet_ros.py & python3 pub_kitti_point_cloud.py`& python3 pub_rgb_image.py & python3 pub_road_result.py 
   - unfortunately, `rosrun` won't work. because it's using Python 3.x instead of 2.x
   
 ### ROS Node 
