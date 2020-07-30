@@ -35,11 +35,11 @@ before run the code, you may need to install:
 - move voxelnet_ros folder to your `catkin_ws`
 - `catkin_make`
 - `roscd voxelnet/script/`
-- `you probably also need to complie the box_overlap.so using numba
-- `python3 voxelnet_ros.py & python3 pub_kitti_point_cloud.py`& python3 pub_rgb_image.py & python3 pub_road_result.py 
+- you probably also need to complie the box_overlap.so using numba
+- `python3 voxelnet_ros.py & python3 pub_kitti_point_cloud.py`
   - unfortunately, `rosrun` won't work. because it's using Python 3.x instead of 2.x
-- `roslaunch voxelnet_ros convex_hull.launch
-- `rosrun rviz rviz 
+- `roslaunch voxelnet_ros convex_hull.launch`
+- `rosrun rviz rviz`
   - use the voxelnet.rviz to config rviz
 
 ### ROS Node 
