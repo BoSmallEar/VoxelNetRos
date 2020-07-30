@@ -5,6 +5,8 @@ import cv2
 import rospy
 from sensor_msgs.msg import Image
 
+
+
 if __name__ == '__main__': 
     rgb_image_root = '../data/rgb_image_0048' 
     file_list = []

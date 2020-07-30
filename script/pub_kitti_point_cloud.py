@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
     rospy.init_node('pub_kitti_point_cloud')
     pub_velo = rospy.Publisher("velodyne_points", PointCloud2, queue_size=1)
-    rate = rospy.Rate(0.2)
+    rate = rospy.Rate(0.1)
 
     pc_num_counter = 0
     while not rospy.is_shutdown():
