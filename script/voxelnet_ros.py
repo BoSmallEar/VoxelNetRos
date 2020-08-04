@@ -143,10 +143,20 @@ def project(pos, orient, dimen):
     index = np.array([[-1,-1,-1], [-1,-1,1],[-1,1,-1],[-1,1,1],[1,-1,-1],[1,-1,1],[1,1,-1],[1,1,1]])
     eight_points =  np.hstack((dimen * index*1/2 + pos, offset))
     eight_points_2D = P.dot(R_rect.dot(C.dot(eight_points.T))).T 
+    fff = True
+    for v in eight_points_2D:
+        if (v[0]/v[2]<=0 or v[0]/v[2]>=1242):
+            fff = False
+        if (v[1]/v[2]<=0 or v[1]/v[2]>=375):
+            fff = False
+
     eight_points_2D_final = [[v[0]/v[2], v[1]/v[2]] for v in eight_points_2D]
     #print(eight_points_2D)
     #print(eight_points_2D_final)
-    return eight_points_2D_final
+    if (fff == False):
+        return []
+    else:
+        return eight_points_2D_final
 
 def quaternion_from_euler(ai, aj, ak, axes='sxyz'):
     """Return quaternion from Euler angles and axis sequence.
@@ -297,7 +307,9 @@ def velo_callback(msg):
             pos = np.array([float(result[1]),float(result[2]),float(result[3])])
             dim = np.array([float(result[6]),float(result[5]),float(result[4])])
             angle = float(result[7])
-            project2Dpoints.append(project(pos,angle,dim))
+            project_res = project(pos,angle,dim)
+            if len(project_res):
+                project2Dpoints.append(project(pos,angle,dim))
             projectDistances.append(np.sqrt(float(result[1])*float(result[1])+float(result[2])*float(result[2])+(float(result[3])-1)*(float(result[3])-1))-5)
 
             arr_bbox.boxes.append(bbox)
